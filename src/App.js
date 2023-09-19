@@ -1,4 +1,5 @@
 import { Outlet, Route, Routes } from "react-router-dom";
+import { ClassmatesList } from "./components/classmates/ListClassmates.js";
 import "./App.css";
 
 export const App = () => {
@@ -8,11 +9,18 @@ export const App = () => {
         path="/"
         element={
           <>
+            <Outlet />
             {/* <NavBar />
-            <Outlet /> */}
+             */}
           </>
         }
-      ></Route>
+      >
+        <Route index element={<ClassmatesList />} />
+        <Route path="users">
+          <Route path=":userId" element={<userDetails />} />
+          {/* <Route path=":userId/edit" element={<EditProfile />} />           */}
+        </Route>
+      </Route>
     </Routes>
   );
 };
