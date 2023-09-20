@@ -11,7 +11,14 @@ export const getClassmatesList = () => {
 export const getSpecificClassmate = (id) => {
   return fetch(`http://localhost:8088/users/${id}?_expand=superlative`).then(
     (res) => {
-      console.log(res);
+      return res.json();
+    }
+  );
+};
+
+export const getMessagesByRecipient = (id) => {
+  return fetch(`http://localhost:8088/messages?recipientId=${id}`).then(
+    (res) => {
       return res.json();
     }
   );
