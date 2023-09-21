@@ -15,11 +15,3 @@ export const getSpecificClassmate = (id) => {
     }
   );
 };
-
-export const getMessagesByRecipient = (id) => {
-  return fetch(`http://localhost:8088/messages?recipientId=${id}`).then(
-    (res) => {
-      return res.json();
-    }
-  );
-};

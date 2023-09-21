@@ -1,10 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {
-  getSpecificClassmate,
-  getMessagesByRecipient,
-} from "../../services/classmateService/classmateService.js";
+import { getSpecificClassmate } from "../../services/classmateService/classmateService.js";
+import { getMessagesByRecipient } from "../../services/messageService/messageService.js";
 
 export const UserProfile = () => {
   const { userId } = useParams();

@@ -21,6 +21,7 @@ export const UserDetails = () => {
           src={specificMate.imageUrl}
           alt={specificMate.name}
           className="classmate-img"
+          key={specificMate.id}
         ></img>
         <h1>{specificMate.name}</h1>
         <h3>{specificMate.superlativeId}</h3>{" "}

@@ -4,7 +4,6 @@ import "./NavBar.css";
 
 export const NavBar = () => {
   const { userId } = useParams();
-
   return (
     <ul className="navbar">
       <li className="navbar__item">
@@ -14,7 +13,7 @@ export const NavBar = () => {
       </li>
 
       <li className="navbar__item">
-        <Link className="navbar__link" to="users/{userId}/profile">
+        <Link className="navbar__link" to={`/users/${userId}/profile`}>
           My Profile
         </Link>
       </li>
