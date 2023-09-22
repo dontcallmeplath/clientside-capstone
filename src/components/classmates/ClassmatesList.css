@@ -27,7 +27,7 @@
   align-items: center;
   justify-content: flex-start;
   position: absolute;
-  top: 0px;
+  top: 80px;
   right: 15%;
 
   .classmate-name-list {

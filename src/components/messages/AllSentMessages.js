@@ -1,18 +1,22 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { getAllMessagesByUserId } from "../../services/messageService/messageService.js";
 
 export const AllSentMessages = () => {
-  const { userId } = useParams();
-
+  const [currentUser, setCurrentUser] = useState({});
   const [mySentMessages, setMySentMessages] = useState([]);
 
   useEffect(() => {
-    getAllMessagesByUserId(userId).then((msgArray) => {
+    const localYearbookUser = localStorage.getItem("yearbook_user");
+    const yearbookUserObject = JSON.parse(localYearbookUser);
+    setCurrentUser(yearbookUserObject.id);
+  }, []);
+
+  useEffect(() => {
+    getAllMessagesByUserId(currentUser).then((msgArray) => {
       setMySentMessages(msgArray);
     });
-  });
+  }, [currentUser]);
 
   return (
     <>
