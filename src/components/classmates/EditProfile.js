@@ -1,0 +1,55 @@
+import React from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { getSpecificClassmate } from "../../services/classmateService/classmateService.js";
+
+export const EditProfile = () => {
+  const [currentUser, setCurrentUser] = useState({});
+  const navigate = useNavigate();
+  const [specificMate, setSpecificMate] = useState({});
+
+  useEffect(() => {
+    getSpecificClassmate(currentUser).then((mateObj) => {
+      setSpecificMate(mateObj);
+    });
+  }, [currentUser]);
+
+  useEffect(() => {
+    const localYearbookUser = localStorage.getItem("yearbook_user");
+    const yearbookUserObject = JSON.parse(localYearbookUser);
+    setCurrentUser(yearbookUserObject.id);
+  }, []);
+
+  return (
+    <>
+      <div className="container">
+        <img
+          src={specificMate.imageUrl}
+          alt={specificMate.name}
+          className="classmate-img"
+        ></img>
+        <h1>{specificMate.name}</h1>
+        <h3>Superlative = {specificMate.superlativeId}</h3>{" "}
+        {/*will eventually want to devote more time to displaying text of the superlative 
+        will also want to display link based on value of bool in data*/}
+        <h3>{specificMate.linkURL}</h3>
+      </div>
+      <div>
+        <button
+          onClick={() => {
+            // handleSubmit
+          }}
+        >
+          SUBMIT CHANGES
+        </button>
+        <button
+          onClick={() => {
+            navigate(`/users/${currentUser}/sent`);
+          }}
+        >
+          SENT MESSAGES
+        </button>
+      </div>
+    </>
+  );
+};
