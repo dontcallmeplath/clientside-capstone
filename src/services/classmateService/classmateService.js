@@ -7,3 +7,11 @@ export const getClassmatesList = () => {
     }
   });
 };
+
+export const getSpecificClassmate = (id) => {
+  return fetch(`http://localhost:8088/users/${id}?_expand=superlative`).then(
+    (res) => {
+      return res.json();
+    }
+  );
+};
