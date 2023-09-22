@@ -55,7 +55,7 @@ export const Register = (props) => {
     <main className="auth-container">
       <form className="auth-form" onSubmit={handleRegister}>
         <h1 className="header">CLASS OF 66</h1>
-        <h2>Please Register</h2>
+        <h2>Please Register:</h2>
         <fieldset className="auth-fieldset">
           <div>
             <input

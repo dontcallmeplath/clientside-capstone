@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-// import "./Login.css"
-import { getUserByEmail } from "../../services/classmateService/userService.js";
+import "./Login.css";
+import { getUserByEmail } from "../../services/classmateService/userService";
 
 export const Login = () => {
   const [email, set] = useState("");
@@ -33,7 +33,7 @@ export const Login = () => {
       <section>
         <form className="auth-form" onSubmit={handleLogin}>
           <h1 className="header">CLASS OF 66</h1>
-          <h2>Please sign in</h2>
+          <h2>Please sign in:</h2>
           <fieldset className="auth-fieldset">
             <div>
               <input
