@@ -1,28 +1,22 @@
-import { Outlet, Route, Routes } from "react-router-dom";
-import { ClassmatesList } from "./components/classmates/ListClassmates.js";
-import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import { Login } from "./components/auth/Login";
+import { Register } from "./components/auth/Register";
+import { Authorized } from "./views/Authorized";
+import { ApplicationViews } from "./views/ApplicationViews.js";
 
 export const App = () => {
   return (
     <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
       <Route
-        path="/"
+        path="*"
         element={
-          <>
-            <Outlet />
-            {/* <NavBar />
-             */}
-          </>
+          <Authorized>
+            <ApplicationViews />
+          </Authorized>
         }
-      >
-        <Route index element={<ClassmatesList />} />
-        <Route path="users">
-          <Route path=":userId" element={<userDetails />} />
-          {/* <Route path=":userId/edit" element={<EditProfile />} />           */}
-        </Route>
-      </Route>
+      />
     </Routes>
   );
 };
-
-export default App;
