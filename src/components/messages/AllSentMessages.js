@@ -21,7 +21,7 @@ export const AllSentMessages = () => {
   return (
     <>
       <div>
-        <h3>MY MESSAGES</h3>
+        <h3>MY SENT MESSAGES</h3>
         <ul>
           {mySentMessages.map((msgArr) => {
             return (
