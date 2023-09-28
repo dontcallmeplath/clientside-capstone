@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getClassmatesList } from "../../services/classmateService/classmateService.js";
-import "./ClassmatesList.css";
+import "./ListClassmates.css";
 
 export const ClassmatesList = () => {
   const [classmates, setClassmates] = useState([]);

@@ -3,6 +3,7 @@ export const getAllMessagesByUserId = (id) => {
     return res.json();
   });
 };
+
 export const getMessagesByRecipient = (id) => {
   return fetch(`http://localhost:8088/messages?recipientId=${id}`).then(
     (res) => {

@@ -1,0 +1,48 @@
+/* message-container
+message-list
+message
+button-container-msg
+read-button
+delete-button
+edit-button */
+
+button {
+  cursor: pointer;
+}
+
+.sent-message-container,
+.recd-message-container {
+  width: 70%;
+  margin: 2rem auto;
+  border: solid 1px black;
+}
+
+.sent-message-list,
+.recd-message-list {
+  width: 60%;
+  list-style-type: none;
+  margin: 0 auto;
+  padding: 1rem;
+  border: solid 1px black;
+}
+
+.sent-message,
+.recd-message {
+  padding: 10px;
+}
+
+.button-container-msg {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.delete-button,
+.edit-button {
+  padding: 3px;
+  margin: 0 5px;
+}
+
+.read-button {
+  display: block;
+  margin: 1.5rem auto;
+}

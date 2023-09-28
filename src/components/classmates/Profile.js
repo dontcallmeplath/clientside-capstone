@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getSpecificClassmate } from "../../services/classmateService/classmateService.js";
 import { getMessagesByRecipient } from "../../services/messageService/messageService.js";
+import "../messages/MessageViews.css";
+import "../classmates/ProfileViews.css";
 
 export const UserProfile = () => {
   const { userId } = useParams();
@@ -29,16 +31,19 @@ export const UserProfile = () => {
         <img
           src={specificMate.imageUrl}
           alt={specificMate.name}
-          className="classmate-img"
+          className="profile-img"
         ></img>
         <h1>{specificMate.name}</h1>
         <h3>Superlative = {specificMate.superlativeId}</h3>{" "}
         {/*will eventually want to devote more time to displaying text of the superlative 
         will also want to display link based on value of bool in data*/}
-        <h3>{specificMate.linkURL}</h3>
+        <h3>
+          <link to={specificMate.capstoneLink} />
+        </h3>
       </div>
-      <div>
+      <div className="button-container-profile">
         <button
+          className="edit-prof-button"
           onClick={() => {
             navigate(`/users/${userId}/edit`);
           }}
@@ -46,6 +51,7 @@ export const UserProfile = () => {
           EDIT PROFILE
         </button>
         <button
+          className="sent-button"
           onClick={() => {
             navigate(`/users/${userId}/sent`);
           }}
@@ -53,14 +59,18 @@ export const UserProfile = () => {
           SENT MESSAGES
         </button>
       </div>
-      <div>
+      <div className="recd-message-container">
         <h3>MY MESSAGES</h3>
-        <ul>
+        <ul className="recd-message-list">
           {myMessages.map((msgObj) => {
-            return <li key={msgObj.id}>{msgObj.text}</li>;
+            return (
+              <li key={msgObj.id} className="recd-message">
+                {msgObj.text}
+              </li>
+            );
           })}
         </ul>
-        <button>Mark as Read</button>
+        <button className="read-button">MARK ALL AS READ</button>
       </div>
     </>
   );
