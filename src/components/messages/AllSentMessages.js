@@ -1,9 +1,10 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { getAllMessagesByUserId } from "../../services/messageService/messageService.js";
+import "../messages/MessageViews.css";
 
 export const AllSentMessages = () => {
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState([]);
   const [mySentMessages, setMySentMessages] = useState([]);
 
   useEffect(() => {
@@ -20,16 +21,20 @@ export const AllSentMessages = () => {
 
   return (
     <>
-      <div>
+      <div className="sent-message-container">
         <h3>MY SENT MESSAGES</h3>
-        <ul>
+        <ul className="sent-message-list">
           {mySentMessages.map((msgArr) => {
             return (
-              <li key={msgArr.id}>
-                {msgArr.text}
-                <button>DELETE</button>
-                <button>EDIT</button>
-              </li>
+              <>
+                <li key={msgArr.id} className="sent-message">
+                  {msgArr.text}
+                </li>
+                <div className="button-container-msg">
+                  <button className="delete-button">DELETE</button>
+                  <button className="edit-button">EDIT</button>
+                </div>
+              </>
             );
           })}
         </ul>

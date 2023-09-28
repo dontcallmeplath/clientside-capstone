@@ -15,3 +15,9 @@ export const getSpecificClassmate = (id) => {
     }
   );
 };
+
+export const getListOfSuperlatives = () => {
+  return fetch(`http://localhost:8088/superlatives`).then((res) => {
+    return res.json();
+  });
+};
