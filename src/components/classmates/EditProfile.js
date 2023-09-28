@@ -23,13 +23,10 @@ export const EditProfile = () => {
     getSpecificClassmate(currentUser).then((mateObj) => {
       setSpecificMate(mateObj);
     });
-  }, [currentUser]);
-
-  useEffect(() => {
     getListOfSuperlatives().then((superList) => {
       setSuperlativeList(superList);
     });
-  });
+  }, [currentUser]);
 
   return (
     <>
