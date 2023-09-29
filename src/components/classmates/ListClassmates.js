@@ -16,32 +16,34 @@ export const ClassmatesList = () => {
 
   return (
     <>
-      <div className="classmate-container">
-        {classmates.map((mate) => {
-          return (
-            <div key={mate.id} className="classmate-card">
-              <img
-                src={mate.imageUrl}
-                alt={mate.name}
-                className="classmate-img"
-                onClick={() => {
-                  navigate(`/users/${mate.id}`);
-                }}
-              ></img>
-            </div>
-          );
-        })}
-      </div>
-      <div className="classmate-name-list-container">
-        <ul className="classmate-name-list">
+      <div className="whole-shebang">
+        <div className="classmate-container">
           {classmates.map((mate) => {
             return (
-              <li key={mate.id} className="classmate-name">
-                {mate.name}
-              </li>
+              <div key={mate.id} className="classmate-card">
+                <img
+                  src={mate.imageUrl}
+                  alt={mate.name}
+                  className="classmate-img"
+                  onClick={() => {
+                    navigate(`/users/${mate.id}`);
+                  }}
+                ></img>
+              </div>
             );
           })}
-        </ul>
+        </div>
+        <div className="classmate-name-list-container">
+          <ul className="classmate-name-list">
+            {classmates.map((mate) => {
+              return (
+                <li key={mate.id} className="classmate-name">
+                  {mate.name}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
     </>
   );

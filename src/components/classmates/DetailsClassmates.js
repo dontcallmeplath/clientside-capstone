@@ -1,11 +1,11 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getSpecificClassmate } from "../../services/classmateService/classmateService.js";
 
 export const UserDetails = () => {
   const { userId } = useParams();
-
+  const navigate = useNavigate();
   const [specificMate, setSpecificMate] = useState({});
 
   useEffect(() => {
@@ -17,7 +17,20 @@ export const UserDetails = () => {
   return (
     <>
       <div>
-        <button className="next-button">Previous</button>
+        <button
+          className="previous-button"
+          onClick={() => {
+            let prevId = `${specificMate.id}`;
+            prevId = prevId - 1;
+            if (prevId >= 1) {
+              navigate(`/users/${prevId}`);
+            } else {
+              navigate(`/`);
+            }
+          }}
+        >
+          Previous
+        </button>
       </div>
       <div className="container">
         <img
@@ -30,10 +43,23 @@ export const UserDetails = () => {
         <h3>Superlative text re ID #{specificMate.superlativeId}</h3>{" "}
         {/*will eventually want to devote more time to displaying text of the superlative 
         will also want to display link based on value of bool in data*/}
-        <h3>{specificMate.linkURL}</h3>
+        <h3>{specificMate.capstoneLink}</h3>
       </div>
       <div>
-        <button className="previous-button">Next</button>
+        <button
+          className="next-button"
+          onClick={() => {
+            let nextId = `${specificMate.id}`;
+            nextId = parseInt(nextId) + 1;
+            if (nextId < 24) {
+              navigate(`/users/${nextId}`);
+            } else {
+              navigate(`/`);
+            }
+          }}
+        >
+          Next
+        </button>
       </div>
     </>
   );
