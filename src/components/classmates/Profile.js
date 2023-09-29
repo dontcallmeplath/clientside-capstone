@@ -37,9 +37,7 @@ export const UserProfile = () => {
         <h3>Superlative = {specificMate.superlativeId}</h3>{" "}
         {/*will eventually want to devote more time to displaying text of the superlative 
         will also want to display link based on value of bool in data*/}
-        <h3>
-          <link to={specificMate.capstoneLink} />
-        </h3>
+        <h3>{specificMate.capstoneLink}</h3>
       </div>
       <div className="button-container-profile">
         <button

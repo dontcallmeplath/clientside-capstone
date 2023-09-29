@@ -1,44 +1,37 @@
-.classmate-container {
+.whole-shebang {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-start;
-  max-width: 819px;
-  margin-left: 8%;
+  width: 90%;
+  margin: 0 auto;
 
-  .classmate-card {
-    flex-basis: 14%;
+  .classmate-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-  }
-}
+    flex-wrap: wrap;
+    width: 80%;
+    /* margin-left: 3rem; */
 
-.classmate-img {
-  width: 8rem;
-  margin: 1rem;
-  box-shadow: 4px 3px 6px -1px grey;
-}
-.classmate-name-list-container {
-  margin-left: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-start;
-  position: absolute;
-  top: 80px;
-  right: 15%;
-
-  .classmate-name-list {
-    display: inline;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    list-style-type: none;
+    .classmate-card {
+      flex-basis: 14%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+    }
   }
-  .classmate-name {
-    font-size: 1rem;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  .classmate-img {
+    width: 8rem;
+    margin: 1rem;
+    box-shadow: 4px 3px 6px -1px grey;
+  }
+  .classmate-name-list-container {
+    .classmate-name-list {
+      list-style-type: none;
+      padding: 10px;
+      margin-top: 0;
+    }
+    .classmate-name {
+      font-size: 1.5rem;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
   }
 }

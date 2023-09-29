@@ -56,14 +56,14 @@ select {
   padding: 10px;
   position: absolute;
   top: 350px;
-  right: 150px;
+  left: 150px;
 }
 
 .next-button {
   padding: 10px;
   position: absolute;
   top: 350px;
-  left: 150px;
+  right: 150px;
 }
 
 label {
