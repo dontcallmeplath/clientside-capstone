@@ -1,11 +1,3 @@
-/* message-container
-message-list
-message
-button-container-msg
-read-button
-delete-button
-edit-button */
-
 button {
   cursor: pointer;
 }
@@ -31,6 +23,20 @@ button {
   padding: 10px;
 }
 
+.msg-box-container {
+  padding: 1.5rem 0;
+}
+
+.msg-box-label {
+  text-align: center;
+}
+
+.add-message-box {
+  padding: 0px;
+  margin: 0 auto;
+  display: block;
+}
+
 .button-container-msg {
   display: flex;
   justify-content: flex-end;
@@ -42,7 +48,8 @@ button {
   margin: 0 5px;
 }
 
-.read-button {
+.read-button,
+.add-msg-button {
   display: block;
   margin: 1.5rem auto;
 }

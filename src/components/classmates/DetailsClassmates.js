@@ -2,15 +2,20 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getSpecificClassmate } from "../../services/classmateService/classmateService.js";
+import { getMessagesByRecipient } from "../../services/messageService/messageService.js";
 
 export const UserDetails = () => {
   const { userId } = useParams();
   const navigate = useNavigate();
   const [specificMate, setSpecificMate] = useState({});
+  const [myMessages, setMyMessages] = useState([]);
 
   useEffect(() => {
     getSpecificClassmate(userId).then((mateObj) => {
       setSpecificMate(mateObj);
+    });
+    getMessagesByRecipient(userId).then((msgObj) => {
+      setMyMessages(msgObj);
     });
   }, [userId]);
 
@@ -32,7 +37,7 @@ export const UserDetails = () => {
           Previous
         </button>
       </div>
-      <div className="container">
+      <div className="classmate-detail-container">
         <img
           src={specificMate.imageUrl}
           alt={specificMate.name}
@@ -60,6 +65,32 @@ export const UserDetails = () => {
         >
           Next
         </button>
+      </div>
+      <div className="recd-message-container">
+        <h3>MY MESSAGES</h3>
+        <ul className="recd-message-list">
+          {myMessages.map((msgObj) => {
+            return (
+              <li key={msgObj.id} className="recd-message">
+                {msgObj.text}
+              </li>
+            );
+          })}
+        </ul>
+        <div className="msg-box-container">
+          <label className="msg-box-label" for="message">
+            Sign my Yearbook:
+          </label>
+          <textarea
+            className="add-message-box"
+            id="message"
+            name="message"
+            rows="5"
+            cols="33"
+            required
+          ></textarea>
+          <button className="add-msg-button">ADD MESSAGE</button>
+        </div>
       </div>
     </>
   );

@@ -9,7 +9,6 @@ import "../classmates/ProfileViews.css";
 export const UserProfile = () => {
   const { userId } = useParams();
   const navigate = useNavigate();
-
   const [specificMate, setSpecificMate] = useState({});
   const [myMessages, setMyMessages] = useState([]);
 
@@ -17,9 +16,6 @@ export const UserProfile = () => {
     getSpecificClassmate(userId).then((mateObj) => {
       setSpecificMate(mateObj);
     });
-  }, [userId]);
-
-  useEffect(() => {
     getMessagesByRecipient(userId).then((msgObj) => {
       setMyMessages(msgObj);
     });
@@ -27,7 +23,7 @@ export const UserProfile = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="profile-detail-container">
         <img
           src={specificMate.imageUrl}
           alt={specificMate.name}
