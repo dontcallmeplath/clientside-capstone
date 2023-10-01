@@ -31,6 +31,14 @@ select {
   border-radius: 10px;
 }
 
+.link {
+  color: black;
+}
+
+.link:visited {
+  color: purple;
+}
+
 .button-container-profile {
   margin: 0 auto;
   width: 16%;
