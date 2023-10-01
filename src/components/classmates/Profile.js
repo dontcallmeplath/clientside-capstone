@@ -46,7 +46,8 @@ export const UserProfile = () => {
         <h3>
           <Link className="link" to={specificMate.capstoneLink}>
             Capstone Link
-          </Link>{" "}
+          </Link>
+          {"beep? "}
         </h3>
       </div>
       <div className="button-container-profile">

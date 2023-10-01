@@ -15,8 +15,9 @@ button {
 }
 
 .edit-options-container {
-  width: 80%;
-  margin: 0 auto;
+  width: 40%;
+  margin: 20px auto;
+  border: solid 1px black;
   padding: 3rem;
 }
 
@@ -39,9 +40,10 @@ select {
   color: purple;
 }
 
-.button-container-profile {
+.button-container-profile,
+.button-container-edit-prof {
   margin: 0 auto;
-  width: 16%;
+  width: 20%;
 }
 
 .submit-button {

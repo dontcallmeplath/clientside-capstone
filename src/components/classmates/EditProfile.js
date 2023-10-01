@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import {
   getSpecificClassmate,
   getListOfSuperlatives,
+  editMate,
 } from "../../services/classmateService/classmateService.js";
 import "../classmates/ProfileViews.css";
 
@@ -11,6 +12,7 @@ export const EditProfile = () => {
   const [currentUser, setCurrentUser] = useState({});
   const [specificMate, setSpecificMate] = useState({});
   const [superlativeList, setSuperlativeList] = useState([]);
+  const [classmate, setClassmate] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,6 +30,24 @@ export const EditProfile = () => {
     });
   }, [currentUser]);
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const updatedMate = {
+      id: specificMate.id,
+      name: specificMate.name,
+      imageUrl: specificMate.imageUrl,
+      capstoneLink: specificMate.capstoneLink,
+      showLink: specificMate.showLink,
+      superlativeId: specificMate.superlativeId,
+      email: specificMate.email,
+    };
+
+    editMate(updatedMate).then(() => {
+      navigate(`/users/${specificMate.Id}`);
+    });
+  };
+
   return (
     <>
       <div className="container">
@@ -38,42 +58,87 @@ export const EditProfile = () => {
         ></img>
         <div className="edit-options-container">
           <label>Update Image URL</label>
-          <input placeholder={specificMate.imageUrl} size="80" />
+          <input
+            name="imageUrl"
+            value={specificMate.imageUrl ? specificMate.imageUrl : ""}
+            type="text"
+            placeholder={specificMate.imageUrl}
+            size="80"
+            onChange={(event) => {
+              const mateCopy = { ...specificMate };
+              mateCopy.imageUrl = event.target.value;
+              setClassmate(mateCopy);
+            }}
+          />
 
           <label>Update name</label>
-          <input placeholder={specificMate.name} size="80" />
+          <input
+            name="name"
+            value={specificMate.name ? specificMate.name : ""}
+            placeholder={specificMate.name}
+            size="80"
+            onChange={(event) => {
+              const mateCopy = { ...specificMate };
+              mateCopy.name = event.target.value;
+              setClassmate(mateCopy);
+            }}
+          />
 
           <label>Choose superlative</label>
-          <select>
-            <option value={0}></option>
-            {superlativeList.map((superArr) => {
+          <select
+            name="superlativeId"
+            value={specificMate.superlativeId}
+            onChange={(event) => {
+              const mateCopy = { ...specificMate };
+              mateCopy.superlativeId = event.target.value;
+              setClassmate(mateCopy);
+            }}
+          >
+            <option value={0}>Most likely to succeed</option>
+            {superlativeList.map((superObj) => {
               return (
-                <option key={superArr.id} value={superArr.id}>
-                  {superArr.text}
+                <option key={superObj.id} value={superObj.id}>
+                  {superObj.text}
                 </option>
               );
             })}
           </select>
 
           <label>Update Capstone URL</label>
-          <input placeholder={specificMate.capstoneLink} size="80" />
+          <input
+            name="capstoneUrl"
+            value={specificMate.capstoneLink ? specificMate.capstoneLink : ""}
+            type="text"
+            placeholder={specificMate.capstoneLink}
+            size="80"
+            onChange={(event) => {
+              const mateCopy = { ...specificMate };
+              mateCopy.capstoneLink = event.target.value;
+              setClassmate(mateCopy);
+            }}
+          />
 
-          <label>Show link ?</label>
-          <input type="radio" name="showLink" value="Yes" />
-
+          <label>
+            <input
+              type="radio"
+              name="showLink"
+              value={specificMate.showLink}
+              onChange={(event) => {
+                const mateCopy = { ...specificMate };
+                mateCopy.showLink = !mateCopy.showLink;
+                setClassmate(mateCopy);
+              }}
+            />
+            Show link ?
+          </label>
           <label>Update Login Email</label>
           <input placeholder={specificMate.email} size="80" />
         </div>
         {/*will eventually want to devote more time to displaying text of the superlative 
         will also want to display link based on value of bool in data*/}
       </div>
-      <div className="button-container">
-        <button
-          className="submit-button"
-          onClick={() => {
-            // handleSubmit
-          }}
-        >
+      <div className="button-container-edit-prof">
+        <button className="submit-button" onClick={handleSubmit}>
           SUBMIT CHANGES
         </button>
         <button

@@ -21,3 +21,13 @@ export const getListOfSuperlatives = () => {
     return res.json();
   });
 };
+
+export const editMate = (mate) => {
+  return fetch(`http://localhost:8088/users/${mate.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(mate),
+  });
+};
