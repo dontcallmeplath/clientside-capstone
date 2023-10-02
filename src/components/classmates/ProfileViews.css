@@ -15,9 +15,14 @@ button {
 }
 
 .edit-options-container {
-  width: 80%;
-  margin: 0 auto;
+  width: 40%;
+  margin: 20px auto;
+  border: solid 1px black;
   padding: 3rem;
+}
+
+fieldset {
+  border: none;
 }
 
 select {
@@ -31,9 +36,18 @@ select {
   border-radius: 10px;
 }
 
-.button-container-profile {
+.link {
+  color: black;
+}
+
+.link:visited {
+  color: purple;
+}
+
+.button-container-profile,
+.button-container-edit-prof {
   margin: 0 auto;
-  width: 16%;
+  width: 20%;
 }
 
 .submit-button {

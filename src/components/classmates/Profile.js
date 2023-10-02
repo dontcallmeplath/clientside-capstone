@@ -1,7 +1,10 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { getSpecificClassmate } from "../../services/classmateService/classmateService.js";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import {
+  getSpecificClassmate,
+  getClassmatesList,
+} from "../../services/classmateService/classmateService.js";
 import { getMessagesByRecipient } from "../../services/messageService/messageService.js";
 import "../messages/MessageViews.css";
 import "../classmates/ProfileViews.css";
@@ -11,6 +14,7 @@ export const UserProfile = () => {
   const navigate = useNavigate();
   const [specificMate, setSpecificMate] = useState({});
   const [myMessages, setMyMessages] = useState([]);
+  const [allClassmates, setAllClassmates] = useState([]);
 
   useEffect(() => {
     getSpecificClassmate(userId).then((mateObj) => {
@@ -20,6 +24,12 @@ export const UserProfile = () => {
       setMyMessages(msgObj);
     });
   }, [userId]);
+
+  useEffect(() => {
+    getClassmatesList().then((mateArray) => {
+      setAllClassmates(mateArray);
+    });
+  }, []);
 
   return (
     <>
@@ -33,7 +43,11 @@ export const UserProfile = () => {
         <h3>Superlative = {specificMate.superlativeId}</h3>{" "}
         {/*will eventually want to devote more time to displaying text of the superlative 
         will also want to display link based on value of bool in data*/}
-        <h3>{specificMate.capstoneLink}</h3>
+        <h3>
+          <Link className="link" to={specificMate.capstoneLink}>
+            {"Capstone Link"}
+          </Link>
+        </h3>
       </div>
       <div className="button-container-profile">
         <button
@@ -59,6 +73,15 @@ export const UserProfile = () => {
           {myMessages.map((msgObj) => {
             return (
               <li key={msgObj.id} className="recd-message">
+                {allClassmates.map((mateObj) => {
+                  if (msgObj.senderId === mateObj.id) {
+                    return (
+                      <div key={msgObj.senderId}>
+                        <strong>{mateObj.name} says: </strong>
+                      </div>
+                    );
+                  }
+                })}
                 {msgObj.text}
               </li>
             );
