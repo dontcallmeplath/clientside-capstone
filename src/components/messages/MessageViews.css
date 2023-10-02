@@ -18,6 +18,10 @@ button {
   border: solid 1px black;
 }
 
+.recd-message-list {
+  margin-bottom: 2rem;
+}
+
 .sent-message-list {
   max-height: 100vh;
   overflow: auto;
