@@ -45,9 +45,8 @@ export const UserProfile = () => {
         will also want to display link based on value of bool in data*/}
         <h3>
           <Link className="link" to={specificMate.capstoneLink}>
-            Capstone Link
+            {"Capstone Link"}
           </Link>
-          {"beep? "}
         </h3>
       </div>
       <div className="button-container-profile">

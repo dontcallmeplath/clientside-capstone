@@ -44,12 +44,12 @@ export const EditProfile = () => {
     };
 
     editMate(updatedMate).then(() => {
-      navigate(`/users/${specificMate.Id}`);
+      navigate(`/users/${currentUser}/profile`);
     });
   };
 
   return (
-    <>
+    <form>
       <div className="container">
         <img
           src={specificMate.imageUrl}
@@ -57,85 +57,98 @@ export const EditProfile = () => {
           className="profile-img"
         ></img>
         <div className="edit-options-container">
-          <label>Update Image URL</label>
-          <input
-            name="imageUrl"
-            value={specificMate.imageUrl ? specificMate.imageUrl : ""}
-            type="text"
-            placeholder={specificMate.imageUrl}
-            size="80"
-            onChange={(event) => {
-              const mateCopy = { ...specificMate };
-              mateCopy.imageUrl = event.target.value;
-              setClassmate(mateCopy);
-            }}
-          />
-
-          <label>Update name</label>
-          <input
-            name="name"
-            value={specificMate.name ? specificMate.name : ""}
-            placeholder={specificMate.name}
-            size="80"
-            onChange={(event) => {
-              const mateCopy = { ...specificMate };
-              mateCopy.name = event.target.value;
-              setClassmate(mateCopy);
-            }}
-          />
-
-          <label>Choose superlative</label>
-          <select
-            name="superlativeId"
-            value={specificMate.superlativeId}
-            onChange={(event) => {
-              const mateCopy = { ...specificMate };
-              mateCopy.superlativeId = event.target.value;
-              setClassmate(mateCopy);
-            }}
-          >
-            <option value={0}>Most likely to succeed</option>
-            {superlativeList.map((superObj) => {
-              return (
-                <option key={superObj.id} value={superObj.id}>
-                  {superObj.text}
-                </option>
-              );
-            })}
-          </select>
-
-          <label>Update Capstone URL</label>
-          <input
-            name="capstoneUrl"
-            value={specificMate.capstoneLink ? specificMate.capstoneLink : ""}
-            type="text"
-            placeholder={specificMate.capstoneLink}
-            size="80"
-            onChange={(event) => {
-              const mateCopy = { ...specificMate };
-              mateCopy.capstoneLink = event.target.value;
-              setClassmate(mateCopy);
-            }}
-          />
-
-          <label>
+          <fieldset>
+            <label>Update Image URL</label>
             <input
-              type="radio"
-              name="showLink"
-              value={specificMate.showLink}
+              name="imageUrl"
+              value={specificMate.imageUrl ? specificMate.imageUrl : ""}
+              type="text"
+              placeholder={specificMate.imageUrl}
+              size="80"
               onChange={(event) => {
                 const mateCopy = { ...specificMate };
-                mateCopy.showLink = !mateCopy.showLink;
+                mateCopy.imageUrl = event.target.value;
                 setClassmate(mateCopy);
               }}
             />
-            Show link ?
-          </label>
-          <label>Update Login Email</label>
-          <input placeholder={specificMate.email} size="80" />
+          </fieldset>
+          <fieldset>
+            <label>Update name</label>
+            <input
+              name="name"
+              value={specificMate.name ? specificMate.name : ""}
+              placeholder={specificMate.name}
+              size="80"
+              onChange={(event) => {
+                const mateCopy = { ...specificMate };
+                mateCopy.name = event.target.value;
+                setClassmate(mateCopy);
+              }}
+            />
+          </fieldset>
+          <fieldset>
+            <label>Choose superlative</label>
+            <select
+              name="superlativeId"
+              value={
+                specificMate.superlativeId ? specificMate.superlativeId : ""
+              }
+              onChange={(event) => {
+                const mateCopy = { ...specificMate };
+                mateCopy.superlativeId = parseInt(event.target.value);
+                setClassmate(mateCopy);
+              }}
+            >
+              <option value={0}></option>
+              {superlativeList.map((superObj) => {
+                return (
+                  <option
+                    value={superObj.id}
+                    key={superObj.id}
+                    text={superObj.text}
+                    // placeholder={superObj.id}
+                  >
+                    {superObj.text}
+                  </option>
+                );
+              })}
+            </select>
+          </fieldset>
+          <fieldset>
+            <label>Update Capstone URL</label>
+            <input
+              name="capstoneUrl"
+              value={specificMate.capstoneLink ? specificMate.capstoneLink : ""}
+              type="text"
+              placeholder={specificMate.capstoneLink}
+              size="80"
+              onChange={(event) => {
+                const mateCopy = { ...specificMate };
+                mateCopy.capstoneLink = event.target.value;
+                setClassmate(mateCopy);
+              }}
+            />
+          </fieldset>
+          <fieldset>
+            <label>
+              <input
+                type="radio"
+                name="showLink"
+                value={specificMate.showLink}
+                onChange={(event) => {
+                  const mateCopy = { ...specificMate };
+                  mateCopy.showLink = !mateCopy.showLink;
+                  setClassmate(mateCopy);
+                }}
+              />
+              Show link ?
+            </label>
+          </fieldset>
+          <fieldset>
+            <label>Update Login Email</label>
+            <input placeholder={specificMate.email} size="80" />
+          </fieldset>
         </div>
-        {/*will eventually want to devote more time to displaying text of the superlative 
-        will also want to display link based on value of bool in data*/}
       </div>
       <div className="button-container-edit-prof">
         <button className="submit-button" onClick={handleSubmit}>
@@ -150,6 +163,6 @@ export const EditProfile = () => {
           SENT MESSAGES
         </button>
       </div>
-    </>
+    </form>
   );
 };

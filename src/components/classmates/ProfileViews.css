@@ -21,6 +21,10 @@ button {
   padding: 3rem;
 }
 
+fieldset {
+  border: none;
+}
+
 select {
   width: 35.5rem;
 }
