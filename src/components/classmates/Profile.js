@@ -87,7 +87,6 @@ export const UserProfile = () => {
             );
           })}
         </ul>
-        <button className="read-button">MARK ALL AS READ</button>
       </div>
     </>
   );
