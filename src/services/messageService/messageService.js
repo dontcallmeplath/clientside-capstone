@@ -21,3 +21,12 @@ export const postNewMessage = (msgItem) => {
     body: JSON.stringify(msgItem),
   });
 };
+
+export const deleteMsg = (msgId) => {
+  return fetch(`http://localhost:8088/messages/${msgId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((response) => response.json());
+};
