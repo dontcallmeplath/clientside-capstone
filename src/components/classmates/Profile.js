@@ -4,6 +4,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import {
   getSpecificClassmate,
   getClassmatesList,
+  getListOfSuperlatives,
 } from "../../services/classmateService/classmateService.js";
 import { getMessagesByRecipient } from "../../services/messageService/messageService.js";
 import "../messages/MessageViews.css";
@@ -15,6 +16,7 @@ export const UserProfile = () => {
   const [specificMate, setSpecificMate] = useState({});
   const [myMessages, setMyMessages] = useState([]);
   const [allClassmates, setAllClassmates] = useState([]);
+  const [allSuperlatives, setAllSuperlatives] = useState([]);
 
   useEffect(() => {
     getSpecificClassmate(userId).then((mateObj) => {
@@ -31,6 +33,12 @@ export const UserProfile = () => {
     });
   }, []);
 
+  useEffect(() => {
+    getListOfSuperlatives().then((superArray) => {
+      setAllSuperlatives(superArray);
+    });
+  }, []);
+
   return (
     <>
       <div className="profile-detail-container">
@@ -40,7 +48,11 @@ export const UserProfile = () => {
           className="profile-img"
         ></img>
         <h1>{specificMate.name}</h1>
-        <h3>Superlative = {specificMate.superlativeId}</h3>{" "}
+        {allSuperlatives.map((superObj) => {
+          if (superObj.id === specificMate.superlativeId) {
+            return <h3>{superObj.text}</h3>;
+          }
+        })}
         {/*will eventually want to devote more time to displaying text of the superlative 
         will also want to display link based on value of bool in data*/}
         <h3>

@@ -49,7 +49,6 @@ export const AllSentMessages = () => {
                   >
                     DELETE
                   </button>
-                  <button className="edit-button">EDIT</button>
                 </div>
               </>
             );
