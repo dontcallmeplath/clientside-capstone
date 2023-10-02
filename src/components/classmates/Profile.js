@@ -76,7 +76,7 @@ export const UserProfile = () => {
                 {allClassmates.map((mateObj) => {
                   if (msgObj.senderId === mateObj.id) {
                     return (
-                      <div>
+                      <div key={msgObj.senderId}>
                         <strong>{mateObj.name} says: </strong>
                       </div>
                     );

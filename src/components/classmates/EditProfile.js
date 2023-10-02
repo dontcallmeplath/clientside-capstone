@@ -151,7 +151,7 @@ export const EditProfile = () => {
         </div>
       </div>
       <div className="button-container-edit-prof">
-        <button className="submit-button" onClick={handleSubmit}>
+        <button className="submit-button" type="submit" onClick={handleSubmit}>
           SUBMIT CHANGES
         </button>
         <button

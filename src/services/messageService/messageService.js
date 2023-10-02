@@ -11,3 +11,13 @@ export const getMessagesByRecipient = (id) => {
     }
   );
 };
+
+export const postNewMessage = (msgItem) => {
+  return fetch(`http://localhost:8088/messages`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(msgItem),
+  });
+};
