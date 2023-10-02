@@ -12,7 +12,6 @@ export const EditProfile = () => {
   const [currentUser, setCurrentUser] = useState({});
   const [specificMate, setSpecificMate] = useState({});
   const [superlativeList, setSuperlativeList] = useState([]);
-  const [classmate, setClassmate] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -68,7 +67,7 @@ export const EditProfile = () => {
               onChange={(event) => {
                 const mateCopy = { ...specificMate };
                 mateCopy.imageUrl = event.target.value;
-                setClassmate(mateCopy);
+                setSpecificMate(mateCopy);
               }}
             />
           </fieldset>
@@ -82,7 +81,7 @@ export const EditProfile = () => {
               onChange={(event) => {
                 const mateCopy = { ...specificMate };
                 mateCopy.name = event.target.value;
-                setClassmate(mateCopy);
+                setSpecificMate(mateCopy);
               }}
             />
           </fieldset>
@@ -96,7 +95,7 @@ export const EditProfile = () => {
               onChange={(event) => {
                 const mateCopy = { ...specificMate };
                 mateCopy.superlativeId = parseInt(event.target.value);
-                setClassmate(mateCopy);
+                setSpecificMate(mateCopy);
               }}
             >
               <option value={0}></option>
@@ -125,7 +124,7 @@ export const EditProfile = () => {
               onChange={(event) => {
                 const mateCopy = { ...specificMate };
                 mateCopy.capstoneLink = event.target.value;
-                setClassmate(mateCopy);
+                setSpecificMate(mateCopy);
               }}
             />
           </fieldset>
@@ -138,7 +137,7 @@ export const EditProfile = () => {
                 onChange={(event) => {
                   const mateCopy = { ...specificMate };
                   mateCopy.showLink = !mateCopy.showLink;
-                  setClassmate(mateCopy);
+                  setSpecificMate(mateCopy);
                 }}
               />
               Show link ?
