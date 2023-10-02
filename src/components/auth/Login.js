@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import { getUserByEmail } from "../../services/classmateService/userService";
@@ -53,9 +52,6 @@ export const Login = () => {
             </div>
           </fieldset>
         </form>
-      </section>
-      <section className="register-link">
-        <Link to="/register">Not a member yet?</Link>
       </section>
     </main>
   );
