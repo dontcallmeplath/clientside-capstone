@@ -34,8 +34,6 @@ export const AllSentMessages = () => {
     });
   };
 
-  const editThisMsg = (msgText, id) => {};
-
   return (
     <>
       <div className="sent-message-container">
@@ -77,7 +75,9 @@ export const AllSentMessages = () => {
                     <button
                       className="edit-button"
                       onClick={(event) => {
-                        editMsg(msgObj, msg, msgObj.id);
+                        editMsg(msgObj, msg, msgObj.id).then(() => {
+                          setRerender(!rerender);
+                        });
                       }}
                     >
                       SAVE EDIT
