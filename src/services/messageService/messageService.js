@@ -30,3 +30,20 @@ export const deleteMsg = (msgId) => {
     },
   }).then((response) => response.json());
 };
+
+export const editMsg = (msgObj, msgText, msgId) => {
+  return fetch(`http://localhost:8088/messages/${msgId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      id: msgId,
+      text: msgText,
+      timestamp: "",
+      senderId: msgObj.senderId,
+      recipientId: msgObj.recipientId,
+      read: msgObj.read,
+    }),
+  }).then((response) => response.json());
+};

@@ -53,8 +53,7 @@ export const UserProfile = () => {
             return <h3>{superObj.text}</h3>;
           }
         })}
-        {/*will eventually want to devote more time to displaying text of the superlative 
-        will also want to display link based on value of bool in data*/}
+
         <h3>
           <Link className="link" to={specificMate.capstoneLink}>
             {"Capstone Link"}

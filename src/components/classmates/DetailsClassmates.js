@@ -4,6 +4,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import {
   getSpecificClassmate,
   getClassmatesList,
+  getListOfSuperlatives,
 } from "../../services/classmateService/classmateService.js";
 import { getMessagesByRecipient } from "../../services/messageService/messageService.js";
 import { postNewMessage } from "../../services/messageService/messageService.js";
@@ -15,6 +16,8 @@ export const UserDetails = () => {
   const [specificMate, setSpecificMate] = useState({});
   const [allClassmates, setAllClassmates] = useState([]);
   const [myMessages, setMyMessages] = useState([]);
+  const [allSuperlatives, setAllSuperlatives] = useState([]);
+  const [rerender, setRerender] = useState(false);
   const [newMessage, setNewMessage] = useState({
     text: "",
     timestamp: "",
@@ -33,17 +36,20 @@ export const UserDetails = () => {
     getSpecificClassmate(userId).then((mateObj) => {
       setSpecificMate(mateObj);
     });
-  }, [userId]);
-
-  useEffect(() => {
     getMessagesByRecipient(userId).then((msgObj) => {
       setMyMessages(msgObj);
     });
-  }, [userId, newMessage]);
+  }, [userId, rerender]);
 
   useEffect(() => {
     getClassmatesList().then((mateArray) => {
       setAllClassmates(mateArray);
+    });
+  }, []);
+
+  useEffect(() => {
+    getListOfSuperlatives().then((superArray) => {
+      setAllSuperlatives(superArray);
     });
   }, []);
 
@@ -64,17 +70,20 @@ export const UserDetails = () => {
       read: newMessage.read,
     };
 
-    postNewMessage(newMessageObj).then(() => {
-      navigate(`/users/${specificMate.id}`);
-      setNewMessage({
-        text: "",
-        timestamp: "",
-        senderId: 0,
-        recipientId: 0,
-        read: false,
+    postNewMessage(newMessageObj)
+      .then(() => {
+        setNewMessage({
+          text: "",
+          timestamp: "",
+          senderId: 0,
+          recipientId: 0,
+          read: false,
+        });
+        document.getElementById("message").value = "";
+      })
+      .then(() => {
+        setRerender(!rerender);
       });
-      document.getElementById("message").value = "";
-    });
   };
 
   return (
@@ -103,9 +112,11 @@ export const UserDetails = () => {
           key={specificMate.id}
         ></img>
         <h1>{specificMate.name}</h1>
-        <h3>Superlative text re ID #{specificMate.superlativeId}</h3>{" "}
-        {/*will eventually want to devote more time to displaying text of the superlative 
-        will also want to display link based on value of bool in data*/}
+        {allSuperlatives.map((superObj) => {
+          if (superObj.id === specificMate.superlativeId) {
+            return <h3>{superObj.text}</h3>;
+          }
+        })}
         <h3>
           <Link className="link" to={specificMate.capstoneLink}>
             {"Capstone Link"}
@@ -159,7 +170,7 @@ export const UserDetails = () => {
               name="message"
               rows="5"
               cols="33"
-              value={setNewMessage.text}
+              value={newMessage.text}
               required
               onChange={handleInputChange}
             ></textarea>

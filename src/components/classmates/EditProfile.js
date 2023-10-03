@@ -21,7 +21,7 @@ export const EditProfile = () => {
   }, []);
 
   useEffect(() => {
-    getSpecificClassmate(currentUser).then((mateObj) => {
+    getSpecificClassmate(currentUser)?.then((mateObj) => {
       setSpecificMate(mateObj);
     });
     getListOfSuperlatives().then((superList) => {
