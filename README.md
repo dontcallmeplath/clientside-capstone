@@ -1,2 +1,2 @@
 # Class of '66
-A functional message board and yearbook for my cohort with NSS
+A functional message board and yearbook for my cohort with Nashville Software School
